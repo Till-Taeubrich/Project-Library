@@ -1,0 +1,10 @@
+(1) A function that loops through array (2) and displays each book on the page.
+It might help for now to manually add a few books to your array so you can see the display.
+
+display on page:
+1. manually add dummy-books to array
+2. create function which...
+  2.1. (loops through library array) {
+  2.2. (for each book in array) creates and appends a new tablerow (to existing table)
+  2.3. (for each book in array) creates 4 tablecolumns and appends to new tablerow.
+  2.4. update textcontent of each row with data of appropriate book.}
