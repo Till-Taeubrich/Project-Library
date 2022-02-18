@@ -10,7 +10,7 @@ class books {
   }
 }
 
-function displayLibrary() {
+function scanLibrary() {
   
   const currentLibraryAmount = library.length
   
@@ -24,6 +24,14 @@ function displayLibrary() {
   }
 }
 
+function openPopUp() {
+  popUp.classList.remove('hidden');
+}
+
+function closePopUp() {
+  popUp.classList.add('hidden');
+}
+
 function getUserInput(){
   const title =  prompt('title','');
   const author = prompt('author','');
@@ -33,7 +41,7 @@ function getUserInput(){
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
-  const newBook = new books(title, author, numberOfPages, readingStatus);
+  const newBook = new books(titleField, author, numberOfPages, readingStatus);
   library.push(newBook);
   displayNewBookInTable(title, author, numberOfPages, readingStatus);
 }
@@ -62,14 +70,34 @@ function displayNewBookInTable(title, author, numberOfPages, readingStatus){
   newRow.append(statusColumn);
 }
 
-displayLibrary()
+scanLibrary()
 
 // UI
-const button = document.querySelector('.addBook');
-const titleField = document.querySelector('.title')
-const authorField = document.querySelector('.author')
-const pagesField = document.querySelector('.pages')
-const statusField = document.querySelector('.status')
+
+// const button = document.querySelector('.addBook');
+
+// popUp
+
+const newBookButton = document.querySelector('.newBook');
+const popUp = document.querySelector('.popUp');
+const titleField = document.querySelector('.title').value;
+const authorField = document.querySelector('.author');
+const pagesField = document.querySelector('.pages');
+const statusField = document.querySelector('.status');
+const cancelButton = document.querySelector('.cancel');
+const addButton = document.querySelector('.add');
 
 
-button.addEventListener('click', getUserInput);
+// button.addEventListener('click', getUserInput);
+
+newBookButton.addEventListener('click', openPopUp);
+cancelButton.addEventListener('click', closePopUp);
+addButton.addEventListener('click', () => {
+  getUserInput()
+  closePopUp();
+});
+
+
+// cancelButton.addEventListener('click', () => {
+//   popUp.classList.add('hidden');
+// })

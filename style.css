@@ -7,7 +7,51 @@
 		sans-serif;
 }
 
-table,
+/* table,
 td {
 	border: 1px green solid;
+} */
+
+.popUp.hidden {
+	display: none;
+}
+
+.popUp {
+	border: 1px red solid;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 500px;
+	text-align: center;
+}
+
+.popUp h1 {
+	margin-bottom: 2rem;
+}
+
+.popUp form div {
+	margin: 1rem;
+}
+
+.popUp form div button {
+	border: none;
+	padding: 1em 2em;
+	border-radius: 7px;
+}
+button:active {
+	transform: scale(0.98);
+}
+.popUp form div .cancel {
+	margin-right: 1rem;
+	background-color: rgb(228, 0, 0);
+}
+.popUp form div .cancel:hover {
+	background-color: rgb(249, 0, 0);
+}
+.popUp form div .add {
+	background-color: rgb(0, 146, 0);
+}
+.popUp form div .add:hover {
+	background-color: rgb(0, 167, 0);
 }

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <button class="addBook">NEW BOOK</button>
+  <button class="newBook">NEW BOOK</button>
   <table>
     <thead>
       <tr>
@@ -25,6 +25,28 @@
 
     </tbody>
   </table>
+  <div class="popUp hidden">
+    <h1>Add New Book</h1>
+    <form action="" method="post">
+      <div>
+        <input class="title" type="text" name="title" id="title" placeholder="Title" required>
+      </div>
+      <div>
+        <input class="author" type="text" name="author" id="author" placeholder="Author" required>
+      </div>
+      <div>
+        <input class="page" type="text" name="numberOfPages" id="pages" placeholder="How many Pages?" required>
+      </div>
+      <div>
+        <label>Are you finished reading it?
+          <input class="status" type="checkbox" id="status" name="readingStatus">
+      </div>
+      <div class="buttons">
+        <button class="cancel" type="button">cancel</button>
+        <button class="add" type="button">add</button>
+      </div>
+    </form>
+  </div>
 </body>
 
 </html>
