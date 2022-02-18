@@ -10,9 +10,11 @@ class books {
   }
 }
 
-function displayLibrary() {
-  for (const book of library) {}
-}
+// function displayLibrary() {
+//   for (const book of library) {
+
+//   }
+// }
 
 
 function getUserInput(){
@@ -20,41 +22,38 @@ function getUserInput(){
   const author = prompt('author','');
   let numberOfPages = Number(prompt('numberOfPages', ''));
   let readingStatus = prompt('readingStatus','');
+  addBookToLibrary(title, author, numberOfPages, readingStatus)
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
   let newBook = new books(title, author, numberOfPages, readingStatus);
   library.push(newBook);
-  displayNewBook(title, author, numberOfPages, readingStatus);
+  displayNewBookInTable(title, author, numberOfPages, readingStatus);
 }
 
-
-function displayNewBook(title, author, numberOfPages, readingStatus){
-
+function displayNewBookInTable(title, author, numberOfPages, readingStatus){
   const tableBody = document.querySelector('.tableBody');
-  
+
+  // Add row to table
   const newRow = document.createElement('tr');
-  newRow.classList.add('newRow')
   tableBody.append(newRow);
 
+  // Add columns to row
   const titleColumn = document.createElement('td');
-  titleColumn.textContent = title;
-  newRow.append(titleColumn);
-    
   const authorColumn = document.createElement('td');
-  authorColumn.textContent = author;
-  newRow.append(authorColumn);
-
   const pagesColumn = document.createElement('td');
-  pagesColumn.textContent = numberOfPages;
-  newRow.append(pagesColumn);
-    
   const statusColumn = document.createElement('td');
+  
+  titleColumn.textContent = title;
+  authorColumn.textContent = author;
+  pagesColumn.textContent = numberOfPages;
   statusColumn.textContent = readingStatus;
+  
+  newRow.append(titleColumn);
+  newRow.append(authorColumn);
   newRow.append(statusColumn);
+  newRow.append(pagesColumn);    
 }
-
-
 
 
 // UI
