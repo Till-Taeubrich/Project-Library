@@ -10,70 +10,49 @@ class books {
   }
 }
 
+function displayLibrary() {
+  for (const book of library) {}
+}
+
+
 function getUserInput(){
   const title =  prompt('title','');
   const author = prompt('author','');
   let numberOfPages = Number(prompt('numberOfPages', ''));
   let readingStatus = prompt('readingStatus','');
-  
-  addBookToLibrary(title, author, numberOfPages, readingStatus);
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
   let newBook = new books(title, author, numberOfPages, readingStatus);
   library.push(newBook);
-  displayLibrary(title, author, numberOfPages, readingStatus);
+  displayNewBook(title, author, numberOfPages, readingStatus);
 }
 
 
-
-
-function displayLibrary(title, author, numberOfPages, readingStatus){
+function displayNewBook(title, author, numberOfPages, readingStatus){
 
   const tableBody = document.querySelector('.tableBody');
+  
+  const newRow = document.createElement('tr');
+  newRow.classList.add('newRow')
+  tableBody.append(newRow);
 
-  for (const book of library) {
-
-    const newRow = document.createElement('tr');
-    tableBody.append(newRow);
-
-    const titleColumn = document.createElement('td');
-    // titleColumn.classList.add('title');
-
-    const authorColumn = document.createElement('td');
-    // authorColumn.classList.add('author');
-
-    const pagesColumn = document.createElement('td');
-    // pagesColumn.classList.add('pages');
-
-    const statusColumn = document.createElement('td');
-    // statusColumn.classList.add('status');
-
-
+  const titleColumn = document.createElement('td');
+  titleColumn.textContent = title;
+  newRow.append(titleColumn);
     
-    titleColumn.textContent = title;
-    tableBody.append(titleColumn);
+  const authorColumn = document.createElement('td');
+  authorColumn.textContent = author;
+  newRow.append(authorColumn);
 
-    authorColumn.textContent = author;
-    tableBody.append(authorColumn);
-
-    pagesColumn.textContent = numberOfPages;
-    tableBody.append(pagesColumn);
-
-    statusColumn.textContent = readingStatus;
-    tableBody.append(statusColumn);
+  const pagesColumn = document.createElement('td');
+  pagesColumn.textContent = numberOfPages;
+  newRow.append(pagesColumn);
     
-
-
-
-    // const titleColumn = document.createElement('td');
-    // const authorColumn = document.createElement('td');
-    // const pagesColumn = document.createElement('td');
-    // const statusColumn = document.createElement('td');
-  }
+  const statusColumn = document.createElement('td');
+  statusColumn.textContent = readingStatus;
+  newRow.append(statusColumn);
 }
-
-
 
 
 
