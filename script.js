@@ -1,5 +1,18 @@
 // Data
-let library = [];
+let library = [
+  {title: "1",
+  author: "1",
+  numberOfPages: 1,
+  readingStatus: "1",},
+  {title: "2",
+  author: "2",
+  numberOfPages: 2,
+  readingStatus: "2",},
+  {title: "3",
+  author: "3",
+  numberOfPages: 3,
+  readingStatus: "3",},
+];
 
 class books {
   constructor(title, author, numberOfPages, readingStatus) {
