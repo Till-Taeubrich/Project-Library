@@ -1,18 +1,15 @@
 // Data
 let library = [
-  {title: "1",
-  author: "1",
+  {title: "lord",
+  author: "anthony",
   numberOfPages: 1,
-  readingStatus: "1",},
+  readingStatus: "no",},
   {title: "2",
-  author: "2",
+  author: "3",
   numberOfPages: 2,
   readingStatus: "2",},
-  {title: "3",
-  author: "3",
-  numberOfPages: 3,
-  readingStatus: "3",},
 ];
+
 
 class books {
   constructor(title, author, numberOfPages, readingStatus) {
@@ -23,11 +20,23 @@ class books {
   }
 }
 
-// function displayLibrary() {
-//   for (const book of library) {
+(function displayLibrary() {
 
-//   }
-// }
+  let title;
+  let author;
+  let numberOfPages;
+  let readingStatus;
+
+  for (const book of library) {
+    title = book.title;
+    author = book.author;
+    numberOfPages = book.numberOfPages;
+    readingStatus = book.readingStatus;
+  }
+
+  addBookToLibrary(title, author, numberOfPages, readingStatus);
+})();
+
 
 
 function getUserInput(){
