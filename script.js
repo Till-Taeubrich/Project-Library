@@ -1,7 +1,6 @@
 // Data
 const library = [];
 
-
 class books {
   constructor(title, author, numberOfPages, readingStatus) {
     this.title = title;
@@ -59,8 +58,8 @@ function displayNewBookInTable(title, author, numberOfPages, readingStatus){
   
   newRow.append(titleColumn);
   newRow.append(authorColumn);
-  newRow.append(statusColumn);
   newRow.append(pagesColumn);    
+  newRow.append(statusColumn);
 }
 
 displayLibrary()
