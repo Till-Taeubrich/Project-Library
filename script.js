@@ -1,14 +1,5 @@
 // Data
-let library = [
-  {title: "lord",
-  author: "anthony",
-  numberOfPages: 1,
-  readingStatus: "no",},
-  {title: "2",
-  author: "3",
-  numberOfPages: 2,
-  readingStatus: "2",},
-];
+const library = [];
 
 
 class books {
@@ -20,35 +11,30 @@ class books {
   }
 }
 
-(function displayLibrary() {
-
-  let title;
-  let author;
-  let numberOfPages;
-  let readingStatus;
-
-  for (const book of library) {
+function displayLibrary() {
+  
+  const currentLibraryAmount = library.length
+  
+  for (let i = 0; i < currentLibraryAmount; i++) {
+    const book = library[i];
     title = book.title;
     author = book.author;
     numberOfPages = book.numberOfPages;
     readingStatus = book.readingStatus;
+    addBookToLibrary(title, author, numberOfPages, readingStatus);
   }
-
-  addBookToLibrary(title, author, numberOfPages, readingStatus);
-})();
-
-
+}
 
 function getUserInput(){
   const title =  prompt('title','');
   const author = prompt('author','');
-  let numberOfPages = Number(prompt('numberOfPages', ''));
-  let readingStatus = prompt('readingStatus','');
+  const numberOfPages = Number(prompt('numberOfPages', ''));
+  const readingStatus = prompt('readingStatus','');
   addBookToLibrary(title, author, numberOfPages, readingStatus)
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
-  let newBook = new books(title, author, numberOfPages, readingStatus);
+  const newBook = new books(title, author, numberOfPages, readingStatus);
   library.push(newBook);
   displayNewBookInTable(title, author, numberOfPages, readingStatus);
 }
@@ -77,6 +63,7 @@ function displayNewBookInTable(title, author, numberOfPages, readingStatus){
   newRow.append(pagesColumn);    
 }
 
+displayLibrary()
 
 // UI
 const button = document.querySelector('.addBook');
