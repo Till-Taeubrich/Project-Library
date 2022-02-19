@@ -33,15 +33,23 @@ function closePopUp() {
 }
 
 function getUserInput(){
-  const title =  prompt('title','');
-  const author = prompt('author','');
-  const numberOfPages = Number(prompt('numberOfPages', ''));
-  const readingStatus = prompt('readingStatus','');
-  addBookToLibrary(title, author, numberOfPages, readingStatus)
+  const titleValue = document.getElementById('title').value;
+  const authorValue = document.getElementById('author').value;
+  const numberOfPagesValue = document.getElementById('pages').value;
+  readingStatusValue = checkStatus();
+
+  addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
+}
+
+function checkStatus(){
+  const checkBox = document.getElementById('status');
+ 
+  if (checkBox.checked) return true;
+  return false
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
-  const newBook = new books(titleField, author, numberOfPages, readingStatus);
+  const newBook = new books(title, author, numberOfPages, readingStatus);
   library.push(newBook);
   displayNewBookInTable(title, author, numberOfPages, readingStatus);
 }
@@ -74,21 +82,10 @@ scanLibrary()
 
 // UI
 
-// const button = document.querySelector('.addBook');
-
-// popUp
-
 const newBookButton = document.querySelector('.newBook');
 const popUp = document.querySelector('.popUp');
-const titleField = document.querySelector('.title').value;
-const authorField = document.querySelector('.author');
-const pagesField = document.querySelector('.pages');
-const statusField = document.querySelector('.status');
 const cancelButton = document.querySelector('.cancel');
 const addButton = document.querySelector('.add');
-
-
-// button.addEventListener('click', getUserInput);
 
 newBookButton.addEventListener('click', openPopUp);
 cancelButton.addEventListener('click', closePopUp);
@@ -96,8 +93,3 @@ addButton.addEventListener('click', () => {
   getUserInput()
   closePopUp();
 });
-
-
-// cancelButton.addEventListener('click', () => {
-//   popUp.classList.add('hidden');
-// })
