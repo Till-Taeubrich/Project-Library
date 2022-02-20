@@ -27,15 +27,15 @@
   </table>
   <div class="popUp hidden">
     <h1>Add New Book</h1>
-    <form action="" method="post">
+    <form>
       <div>
-        <input class="title" type="text" name="title" id="title" placeholder="Title" required>
+        <input class="title" type="text" name="title" id="title" placeholder="Title">
       </div>
       <div>
-        <input class="author" type="text" name="author" id="author" placeholder="Author" required>
+        <input class="author" type="text" name="author" id="author" placeholder="Author">
       </div>
       <div>
-        <input class="page" type="text" name="numberOfPages" id="pages" placeholder="How many Pages?" required>
+        <input class="page" type="text" name="numberOfPages" id="pages" placeholder="How many Pages?">
       </div>
       <div>
         <label>Are you finished reading it?
@@ -45,6 +45,7 @@
         <button class="cancel" type="button">cancel</button>
         <button class="add" type="button">add</button>
       </div>
+      <div class="errorMessage"></div>
     </form>
   </div>
 </body>

@@ -20,7 +20,7 @@ function scanLibrary() {
     author = book.author;
     numberOfPages = book.numberOfPages;
     readingStatus = book.readingStatus;
-    addBookToLibrary(title, author, numberOfPages, readingStatus);
+    displayBooksInTable(title, author, numberOfPages, readingStatus);
   }
 }
 
@@ -36,9 +36,18 @@ function getUserInput(){
   const titleValue = document.getElementById('title').value;
   const authorValue = document.getElementById('author').value;
   const numberOfPagesValue = document.getElementById('pages').value;
-  readingStatusValue = checkStatus();
-
-  addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
+  const readingStatusValue = checkStatus();
+  const stringValidation = /[A-Za-z]/;
+  const numberValidation = /[0-9]/;
+  
+  if ((stringValidation.test(titleValue) === true) &&
+      (stringValidation.test(authorValue) === true) &&
+      (numberValidation.test(numberOfPagesValue) === true)){
+        errorMessage.innerHTML = ''
+    addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
+  } 
+  else {errorMessage.innerHTML = 'Wrong format: Use letters for Title & Author Field. Use numbers for Pages Field.';
+  }
 }
 
 function checkStatus(){
@@ -51,10 +60,10 @@ function checkStatus(){
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
   const newBook = new books(title, author, numberOfPages, readingStatus);
   library.push(newBook);
-  displayNewBookInTable(title, author, numberOfPages, readingStatus);
+  displayBooksInTable(title, author, numberOfPages, readingStatus);
 }
 
-function displayNewBookInTable(title, author, numberOfPages, readingStatus){
+function displayBooksInTable(title, author, numberOfPages, readingStatus){
   const tableBody = document.querySelector('.tableBody');
 
   // Add row to table
@@ -86,10 +95,11 @@ const newBookButton = document.querySelector('.newBook');
 const popUp = document.querySelector('.popUp');
 const cancelButton = document.querySelector('.cancel');
 const addButton = document.querySelector('.add');
+const errorMessage = document.querySelector('.errorMessage')
 
 newBookButton.addEventListener('click', openPopUp);
 cancelButton.addEventListener('click', closePopUp);
 addButton.addEventListener('click', () => {
   getUserInput()
-  closePopUp();
+  // closePopUp();
 });
