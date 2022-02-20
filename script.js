@@ -33,9 +33,9 @@ function closePopUp() {
 }
 
 function getUserInput(){
-  const titleValue = document.getElementById('title').value;
-  const authorValue = document.getElementById('author').value;
-  const numberOfPagesValue = document.getElementById('pages').value;
+  const titleValue = titleField.value;
+  const authorValue = authorField.value;
+  const numberOfPagesValue = numberOfPagesField.value;
   const readingStatusValue = checkStatus();
   const stringValidation = /[A-Za-z]/;
   const numberValidation = /[0-9]/;
@@ -43,11 +43,10 @@ function getUserInput(){
   if ((stringValidation.test(titleValue) === true) &&
       (stringValidation.test(authorValue) === true) &&
       (numberValidation.test(numberOfPagesValue) === true)){
-        errorMessage.innerHTML = ''
-    addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
-  } 
-  else {errorMessage.innerHTML = 'Wrong format: Use letters for Title & Author Field. Use numbers for Pages Field.';
-  }
+        addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
+        closePopUp();
+        clearForm(titleValue, authorValue, numberOfPagesValue)
+  } else {errorMessage.innerHTML = 'Please use  letters for Title/Author Field & numbers for Pages Field.';}
 }
 
 function checkStatus(){
@@ -55,6 +54,13 @@ function checkStatus(){
  
   if (checkBox.checked) return true;
   return false
+}
+
+function clearForm(){
+  errorMessage.innerHTML = '';
+  titleField.value = '';
+  authorField.value = '';
+  numberOfPagesField.value = '';
 }
 
 function addBookToLibrary(title, author, numberOfPages, readingStatus) {
@@ -93,6 +99,9 @@ scanLibrary()
 
 const newBookButton = document.querySelector('.newBook');
 const popUp = document.querySelector('.popUp');
+const titleField = document.getElementById('title');
+const authorField = document.getElementById('author');
+const numberOfPagesField = document.getElementById('pages');
 const cancelButton = document.querySelector('.cancel');
 const addButton = document.querySelector('.add');
 const errorMessage = document.querySelector('.errorMessage')
@@ -101,5 +110,4 @@ newBookButton.addEventListener('click', openPopUp);
 cancelButton.addEventListener('click', closePopUp);
 addButton.addEventListener('click', () => {
   getUserInput()
-  // closePopUp();
 });
