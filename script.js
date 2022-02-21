@@ -1,5 +1,10 @@
 // Data
-const library = [];
+const library = [{
+title: "a",
+author: "b",
+numberOfPages: "1",
+readingStatus: false,
+}];
 
 class books {
   constructor(title, author, numberOfPages, readingStatus) {
@@ -36,7 +41,7 @@ function getUserInput(){
   const titleValue = titleField.value;
   const authorValue = authorField.value;
   const numberOfPagesValue = numberOfPagesField.value;
-  const readingStatusValue = checkStatus();
+  const readingStatusValue = checkReadingStatus();
   const stringValidation = /[A-Za-z]/;
   const numberValidation = /[0-9]/;
   
@@ -49,7 +54,7 @@ function getUserInput(){
   } else {errorMessage.innerHTML = 'Please use  letters for Title/Author Field & numbers for Pages Field.';}
 }
 
-function checkStatus(){
+function checkReadingStatus(){
   const checkBox = document.getElementById('status');
  
   if (checkBox.checked) return true;
@@ -81,23 +86,37 @@ function displayBooksInTable(title, author, numberOfPages, readingStatus){
   const authorColumn = document.createElement('td');
   const pagesColumn = document.createElement('td');
   const statusColumn = document.createElement('td');
+  const removeBookButton = document.createElement('button');
   
-  titleColumn.textContent = title;
+  titleColumn.textContent = `"${title}"`;
   authorColumn.textContent = author;
   pagesColumn.textContent = numberOfPages;
   statusColumn.textContent = readingStatus;
+
+  removeBookButton.textContent = 'Remove Book';
+  removeBookButton.classList.add('removeBookButton')
+  removeBookButton.addEventListener('click', (e) => {
+    removeBook(e.target)
+  })
   
   newRow.append(titleColumn);
   newRow.append(authorColumn);
   newRow.append(pagesColumn);    
   newRow.append(statusColumn);
+  newRow.append(removeBookButton);
+}
+
+function removeBook(removeButton){
+removeButton.parentNode.remove();
 }
 
 scanLibrary()
 
-// UI
-
+// mainPage
 const newBookButton = document.querySelector('.newBook');
+const removeBookButtons = document.querySelectorAll('.removeBookButton');
+
+// popUp
 const popUp = document.querySelector('.popUp');
 const titleField = document.getElementById('title');
 const authorField = document.getElementById('author');
@@ -111,3 +130,6 @@ cancelButton.addEventListener('click', closePopUp);
 addButton.addEventListener('click', () => {
   getUserInput()
 });
+// removeBookButtons.forEach((removeButton) => {
+//   removeButton.addEventListener('click', removeBook)
+// });
