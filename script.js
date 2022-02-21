@@ -1,10 +1,5 @@
 // Data
-const library = [{
-title: "a",
-author: "b",
-numberOfPages: "1",
-readingStatus: false,
-}];
+const library = [];
 
 class books {
   constructor(title, author, numberOfPages, readingStatus) {
@@ -12,20 +7,6 @@ class books {
     this.author = author;
     this.numberOfPages = numberOfPages;
     this.readingStatus = readingStatus;
-  }
-}
-
-function scanLibrary() {
-  
-  const currentLibraryAmount = library.length
-  
-  for (let i = 0; i < currentLibraryAmount; i++) {
-    const book = library[i];
-    title = book.title;
-    author = book.author;
-    numberOfPages = book.numberOfPages;
-    readingStatus = book.readingStatus;
-    displayBooksInTable(title, author, numberOfPages, readingStatus);
   }
 }
 
@@ -50,15 +31,15 @@ function getUserInput(){
       (numberValidation.test(numberOfPagesValue) === true)){
         addBookToLibrary(titleValue, authorValue, numberOfPagesValue, readingStatusValue);
         closePopUp();
-        clearForm(titleValue, authorValue, numberOfPagesValue)
-  } else {errorMessage.innerHTML = 'Please use  letters for Title/Author Field & numbers for Pages Field.';}
+        clearForm(titleValue, authorValue, numberOfPagesValue);
+  } else {errorMessage.innerHTML = 'Please use  letters for Title/Author Field & numbers for Pages Field.'};
 }
 
 function checkReadingStatus(){
   const checkBox = document.getElementById('status');
  
   if (checkBox.checked) return true;
-  return false
+  return false;
 }
 
 function clearForm(){
@@ -85,32 +66,32 @@ function displayBooksInTable(title, author, numberOfPages, readingStatus){
   const titleColumn = document.createElement('td');
   const authorColumn = document.createElement('td');
   const pagesColumn = document.createElement('td');
-  const statusColumn = document.createElement('td');
+  const statusCheckbox = document.createElement('input');
+  statusCheckbox.setAttribute('type', 'checkbox');
   const removeBookButton = document.createElement('button');
   
   titleColumn.textContent = `"${title}"`;
   authorColumn.textContent = author;
   pagesColumn.textContent = numberOfPages;
-  statusColumn.textContent = readingStatus;
-
+  statusCheckbox.checked = readingStatus;
   removeBookButton.textContent = 'Remove Book';
-  removeBookButton.classList.add('removeBookButton')
+  removeBookButton.classList.add('removeBookButton');
   removeBookButton.addEventListener('click', (e) => {
-    removeBook(e.target)
+    removeBook(e.target);
   })
+
+
   
   newRow.append(titleColumn);
   newRow.append(authorColumn);
   newRow.append(pagesColumn);    
-  newRow.append(statusColumn);
+  newRow.append(statusCheckbox);
   newRow.append(removeBookButton);
 }
 
 function removeBook(removeButton){
 removeButton.parentNode.remove();
 }
-
-scanLibrary()
 
 // mainPage
 const newBookButton = document.querySelector('.newBook');
@@ -128,8 +109,35 @@ const errorMessage = document.querySelector('.errorMessage')
 newBookButton.addEventListener('click', openPopUp);
 cancelButton.addEventListener('click', closePopUp);
 addButton.addEventListener('click', () => {
-  getUserInput()
+  getUserInput();
 });
-// removeBookButtons.forEach((removeButton) => {
-//   removeButton.addEventListener('click', removeBook)
-// });
+
+
+
+
+
+
+
+
+
+// USE CODE BELOW FOR ADDING BOOKS THAT ARE ALREADY IN LIBRARY BEFORE USER INPUT. MIGHT BE HANDY FOR FUTURE FUNCTION. (USING CLOUD TO SAVE DATA)
+
+
+
+
+
+// function scanLibrary() {
+  
+//   const currentLibraryAmount = library.length
+  
+//   for (let i = 0; i < currentLibraryAmount; i++) {
+//     const book = library[i];
+//     title = book.title;
+//     author = book.author;
+//     numberOfPages = book.numberOfPages;
+//     readingStatus = book.readingStatus;
+//     displayBooksInTable(title, author, numberOfPages, readingStatus);
+//   }
+// }
+
+// scanLibrary()
